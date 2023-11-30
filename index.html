@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Kodinger">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>My Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/my-login.css">
+</head>
+
+<body class="my-login-page">
+    <section class="h-100">
+        <div class="container h-100">
+            <div class="row justify-content-md-center h-100">
+                <div class="card-wrapper">
+                    <div class="brand">
+                        <img src="img/logo.jpg" alt="logo">
+                    </div>
+                    <div class="card fat">
+                        <div class="card-body">
+                            <h4 class="card-title">Login</h4>
+
+                            <div class="form-group">
+                                <label for="loginOption">Login Option</label>
+                                <select id="loginOption" class="form-control" name="loginOption" required>
+                                    <option value="email">Email</option>
+                                    <option value="phone">Phone Number</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" id="emailField">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" class="form-control" name="email" value="" required>
+                                <div class="invalid-feedback">
+                                    Email is required
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="phoneField" style="display: none;">
+                                <label for="phoneNumber">Phone Number</label>
+                                <div class="input-group">
+                                    <input id="phoneNumber" type="text" class="form-control" name="phoneNumber" value="" required>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">-</span>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Phone Number is required
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password
+                                    <a href="forgot.html" class="float-right">
+                                        Forgot Password?
+                                    </a>
+                                </label>
+                                <input id="password" type="password" class="form-control" name="password" required data-eye>
+                                <div class="invalid-feedback">
+                                    Password is required
+                                </div>
+                            </div>
+
+                            <!-- Handle form submission using JavaScript -->
+                            <div class="form-group m-0">
+                                <button type="button" class="btn btn-primary btn-block" onclick="validateLogin()">
+                                    Login
+                                </button>
+                            </div>
+                            
+                            <div class="mt-4 text-center">
+                                Don't have an account? <a href="register.html">Create One</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        Copyright &copy; 2023 &mdash; Better Bins Management
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <script>
+        function validateLogin() {
+            var loginOption = document.getElementById('loginOption').value;
+            var email = document.getElementById('email').value;
+            var phoneNumber = document.getElementById('phoneNumber').value;
+            var password = document.getElementById('password').value;
+
+            // Perform basic validation
+            if ((loginOption === 'email' && email.trim() === '') || (loginOption === 'phone' && phoneNumber.trim() === '') || password.trim() === '') {
+                alert('Please fill in all the fields.');
+                return;
+            }
+
+            // Perform login validation (Replace this with your actual validation logic)
+            if (loginOption === 'email' && email === 'example@email.com' && password === 'password123') {
+                alert('Login successful!');
+                // Redirect to main.html (Replace with your actual redirect logic)
+                window.location.href = 'main.html';
+            } else if (loginOption === 'phone' && phoneNumber === '1234567890' && password === 'password123') {
+                alert('Login successful!');
+                // Redirect to main.html (Replace with your actual redirect logic)
+                window.location.href = 'main.html';
+            } else {
+                alert('Invalid email/phone number or password. Please try again.');
+            }
+        }
+
+        document.getElementById('loginOption').addEventListener('change', function() {
+            var emailField = document.getElementById('emailField');
+            var phoneField = document.getElementById('phoneField');
+
+            if (this.value === 'email') {
+                emailField.style.display = 'block';
+                phoneField.style.display = 'none';
+            } else if (this.value === 'phone') {
+                emailField.style.display = 'none';
+                phoneField.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
